@@ -1,0 +1,13 @@
+{
+    "adm": [],
+    "usr": [
+        "UserGroupController",
+        "UsersController"
+    ],
+    "dft": [
+        "tableOneController",
+        "tableTwoController",
+        "UserGroupController",
+        "UsersController"
+    ]
+}
