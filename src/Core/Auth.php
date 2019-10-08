@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Model\AuthModel;
+use TexLab\MyDB\DB;
 
 class Auth
 {
@@ -21,8 +22,11 @@ class Auth
     //    }
     static public function registerUser($login, $pass)
     {
-        $table = new AuthModel('users', Database::Link());
-        if (($userGroup = $table->getUserData($login, $pass)) !== null) {
+
+        // $table = new DbEntity('users', $link);
+
+        $table = new AuthModel(DB::Link(Conf::MYSQL));
+        if (($userGroup = $table->getUserData($login, $pass)) !== []) {
             $_SESSION['user'] = $userGroup;
             return true;
         }

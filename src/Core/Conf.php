@@ -4,10 +4,12 @@ namespace App\Core;
 
 class Conf
 {
-    const MYSQL_DB = 'eshop';
-    const MYSQL_HOST = 'localhost';
-    const MYSQL_USER = 'root';
-    const MYSQL_PASS = '';
+    const MYSQL = [
+        'host' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'dbname' => 'eshop'
+    ];
     const DEFAULT_CONTROLLER = 'Site';
     const DEFAULT_ACTION = 'Home';
     const DEFAULT_PLAIN_LAYOUT = 'templates/_layouts/plainLayout.php';

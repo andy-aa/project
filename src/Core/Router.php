@@ -28,7 +28,7 @@ class Router
     }
     public function run()
     {
-       // if (Auth::checkControllerPermit($this->controllerName)) {
+       if (Auth::checkControllerPermit($this->controllerName)) {
             $className = "App\\Controller\\{$this->controllerName}";
             if (class_exists($className)) {
                 $MVC = new $className();
@@ -42,9 +42,9 @@ class Router
                             //    echo "нет такого класса: $this->controllerName";
                 (new ErrorController())->notFoundError("Not Found Controller: {$this->controllerName}");
             }
-        // } else {
-        //     // echo "ошибка доступа";
-        //     (new ErrorController())->forbiddenController();
-        // }
+        } else {
+            // echo "ошибка доступа";
+            (new ErrorController())->forbiddenController();
+        }
     }
 }
