@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4d8e5780206d129cc5eab69a7a4b258",
+    "content-hash": "acf37e235aa570a154aa1e3df4b98e8f",
     "packages": [
         {
             "name": "texlab/mydb",
@@ -46,6 +46,39 @@
                 "php"
             ],
             "time": "2019-09-19T08:17:58+00:00"
+        },
+        {
+            "name": "texlab/route",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andy-aa/route.git",
+                "reference": "7fd780514e75eb47badd334eb801667e328406c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andy-aa/route/zipball/7fd780514e75eb47badd334eb801667e328406c1",
+                "reference": "7fd780514e75eb47badd334eb801667e328406c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Texlab\\Route\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple PHP router",
+            "time": "2019-09-22T09:08:52+00:00"
         }
     ],
     "packages-dev": [
