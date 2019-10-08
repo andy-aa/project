@@ -1,5 +1,10 @@
 <?php
 
-    require "../vendor/autoload.php";
+session_start();
 
-    echo "Hi world!";
+require "../vendor/autoload.php";
+use App\Core\Router;
+
+// echo "Hi world!";
+
+(new Router())->run();
