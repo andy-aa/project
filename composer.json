@@ -5,7 +5,8 @@
     "phpunit/phpunit": "^8.3"
   },
   "require": {
-    "texlab/mydb": "^0.0.2"
+    "texlab/mydb": "^0.0.2",
+    "texlab/route": "^0.0.1"
   },
   "autoload": {
     "psr-4": {
