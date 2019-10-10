@@ -27,8 +27,13 @@ use App\View\Helper\HTML;
         <li>
             <a href="?a=about">about</a>
         </li>
+        <li>
+            <a href="?a=loginform">login</a>
+        </li>
     </ul>
-
+    <div id="user_state">
+        <?=Auth::currentUserInfo()?>
+    </div>
     <div id="maincontent">
         <?php $this->body(); ?>
     </div>
