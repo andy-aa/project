@@ -36,11 +36,12 @@ use App\View\Helper\HTML;
         <a class="nav-link" href="?a=about">About</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?a=loginform">Login</a>
+        <a class="nav-link" href="?t=usergroup&a=show">Show</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="?a=logout">Logout</a>
+        <a class="nav-link" href="?a=loginform">Login</a>
       </li>
+      
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
@@ -55,8 +56,8 @@ use App\View\Helper\HTML;
   </div>
 </nav>
    
-    <div id="user_state">
-        <?=Auth::currentUserInfo()?>
+    <div id="user_state" class="float-right">
+        <?=Auth::currentUserInfo()." ".(isset($_SESSION['user']) ? "<a href='?a=logout'>Logout</a>" : "") ?>
     </div>
     <div id="maincontent">
         <?php $this->body(); ?>
