@@ -5,13 +5,13 @@ session_start();
 require "../vendor/autoload.php";
 
 use App\Core\Router;
-use App\Core\Auth;
+// use App\Core\Auth;
 
-echo Auth::registerUser('rr', 4);
+// echo Auth::registerUser('rr', 4);
 
 // echo "Hi world!";
 
-// (new Router())->run();
+(new Router())->run();
 // use TexLab\MyDB\DbEntity;
 // use TexLab\MyDB\DB;
 

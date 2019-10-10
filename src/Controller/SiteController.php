@@ -4,7 +4,7 @@ namespace App\Controller;
 
 class  SiteController extends AbstractController
 {
-    //use AuthTrait;
+    use AuthTrait;
     public function actionAbout()
     {
         $this->render("about", [

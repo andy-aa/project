@@ -26,7 +26,7 @@ class Auth
         // $table = new DbEntity('users', $link);
 
         $table = new AuthModel(DB::Link(Conf::MYSQL));
-        if (($userGroup = $table->getUserData($login, $pass)) !== []) {
+        if (!empty($userGroup = $table->getUserData($login, $pass))) {
             $_SESSION['user'] = $userGroup;
             return true;
         }
