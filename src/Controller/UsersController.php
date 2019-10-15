@@ -31,4 +31,18 @@ class UsersController extends AbstractTableController
         ]);
     }
 
+
+
+    public function actionShowAddForm()
+    {
+        $tableUsersGroup = new DbEntity('user_group', DB::Link(Conf::MYSQL));
+        $this->view->setPatternsPath('templates/usersTable/');
+        $this->render("ShowAddForm", [
+            'ColumnsNames' => $this->table->getColumnsNames(),
+            'AddURL' => '?t=' . $this->shortClassName() . '&a=Add',
+            'description' => $tableUsersGroup->getColumn('description')
+        ]);
+    }
+
+
 }
