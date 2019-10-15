@@ -1,7 +1,7 @@
 <div>
     <form action="<?= $EditURL ?>" method="POST" class="text-center border border-light p-5">
         <?php
-            foreach ($edit[0] as $key => $value) {
+            foreach ($edit as $key => $value) {
                 if ($key != 'id') {
                     echo $key."<br><label><input class='form-control mb-4' type='text' name='".$key."' value='".$value."'></label><br/>";
                 }

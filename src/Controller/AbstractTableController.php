@@ -42,7 +42,7 @@ abstract class AbstractTableController extends AbstractController
     public function actionShowEditForm()
     {
         $this->render("ShowEditForm", [
-            'edit' => $this->table->get(['id' => $_GET['id']]),
+            'edit' => $this->table->get(['id' => $_GET['id']])[0],
             'EditURL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id']
         ]);
     }
@@ -55,8 +55,6 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionShowAddForm()
     {
-        // echo $this->tableName;
-        // print_r($this->table->getColumnsNames());
         $this->render("ShowAddForm", [
             'ColumnsNames' => $this->table->getColumnsNames(),
             'AddURL' => '?t=' . $this->shortClassName() . '&a=Add'
