@@ -42,6 +42,10 @@ use App\View\Helper\HTML;
           <a class="nav-link" href="?t=feedback&a=show">Feedback</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="?t=users&a=show">Users</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="?a=loginform">Login</a>
         </li>
 

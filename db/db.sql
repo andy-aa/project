@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 10 2019 г., 18:39
+-- Время создания: Окт 15 2019 г., 21:22
 -- Версия сервера: 8.0.12
 -- Версия PHP: 7.2.10
 
@@ -27,6 +27,30 @@ USE `eshop`;
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `feedbacktable`
+--
+
+CREATE TABLE `feedbacktable` (
+  `id` int(11) NOT NULL,
+  `user` text NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `feedbacktable`
+--
+
+INSERT INTO `feedbacktable` (`id`, `user`, `message`) VALUES
+(1, 'admin', 'dsv'),
+(2, 'vs czs', 'cvds'),
+(3, 'vsdvs', 'v ds'),
+(4, 'dsv s', 'dscsgxvdzsf'),
+(5, 'dscvs', 'dascs'),
+(6, 'vdzs', 'dscsgxvdzsf');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -45,10 +69,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `login`, `pass`, `name`, `surname`, `user_group_id`) VALUES
 (1, 'admin', '123', 'Иван', 'Петров', 1),
-(2, 'user', '111', 'Петр28', 'qqqq', 2),
+(2, 'user', '111', 'Петр28', 'qqqq', 3),
 (3, 't', '1', 'Николай', 'Николай', 3),
 (5, 'rr', '4', 'yyyyyyyyyyyyyy', '', 2),
-(6, 'ww', '2', '6665', '', 1);
+(6, 'ww', '2', '6665', '', 1),
+(7, 'test', 'test', 'test', 'test', 1);
 
 -- --------------------------------------------------------
 
@@ -76,6 +101,12 @@ INSERT INTO `user_group` (`id`, `cod`, `description`) VALUES
 --
 
 --
+-- Индексы таблицы `feedbacktable`
+--
+ALTER TABLE `feedbacktable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -95,10 +126,16 @@ ALTER TABLE `user_group`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `feedbacktable`
+--
+ALTER TABLE `feedbacktable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '№', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `user_group`
