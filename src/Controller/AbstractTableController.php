@@ -21,11 +21,15 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionShow()
     {
+
+        $page = $_GET['page'] ?? 1;
         $table = $this->table->setPageSize($this->pageSize);
         $this->render("show", [
-            'table' => $table->getPage($_GET['page']),
+            'table' => $table->getPage($page),
             'pageCount' => $table->pageCount(),
-            'paginationLink' => '?t=' . $this->shortClassName() . '&a=Show&page='
+            'paginationLink' => '?t=' . $this->shortClassName() . '&a=Show&page=',
+            'currentPage' => $page,
+            'controllerName' => $this->shortClassName()
         ]);
     }
 
@@ -39,9 +43,8 @@ abstract class AbstractTableController extends AbstractController
     {
         $this->render("ShowEditForm", [
             'edit' => $this->table->get(['id' => $_GET['id']]),
-            'EditURL' => '?t=' . $this->shortClassName() . '&a=Edit&id='.$_GET['id']
+            'EditURL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id']
         ]);
-
     }
 
     public function actionEdit()
@@ -52,8 +55,10 @@ abstract class AbstractTableController extends AbstractController
 
     public function actionShowAddForm()
     {
+        // echo $this->tableName;
+        // print_r($this->table->getColumnsNames());
         $this->render("ShowAddForm", [
-            'Add' => array_keys($this->table->get(['id' => 1])[0]),
+            'ColumnsNames' => $this->table->getColumnsNames(),
             'AddURL' => '?t=' . $this->shortClassName() . '&a=Add'
         ]);
     }
@@ -63,10 +68,4 @@ abstract class AbstractTableController extends AbstractController
         $this->table->add($_POST);
         $this->redirect('?t=' . $this->shortClassName() . '&a=show');
     }
-
-
-
-
-
-
 }
