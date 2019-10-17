@@ -22,12 +22,14 @@ class UsersController extends AbstractTableController
     public function actionShowEditForm()
     {
         $tableUsersGroup = new DbEntity('user_group', DB::Link(Conf::MYSQL));
-        
+
         $this->view->setPatternsPath('templates/usersTable/');
-        $this->render("ShowEditForm", [
-            'edit' => $this->table->get(['id' => $_GET['id']])[0],
-            'EditURL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id'],
-            'description' => $tableUsersGroup->getColumn('description')
+
+        $this->render("ShowAddEditForm", [
+            'columnsNames' => $this->table->getColumnsNames(),
+            'editValues' => $this->table->get(['id' => $_GET['id']])[0],
+            'URL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id'],
+            'userGroup' => $tableUsersGroup->getColumn('description')
         ]);
     }
 
@@ -36,11 +38,13 @@ class UsersController extends AbstractTableController
     public function actionShowAddForm()
     {
         $tableUsersGroup = new DbEntity('user_group', DB::Link(Conf::MYSQL));
+
         $this->view->setPatternsPath('templates/usersTable/');
-        $this->render("ShowAddForm", [
-            'ColumnsNames' => $this->table->getColumnsNames(),
-            'AddURL' => '?t=' . $this->shortClassName() . '&a=Add',
-            'description' => $tableUsersGroup->getColumn('description')
+        
+        $this->render("ShowAddEditForm", [
+            'columnsNames' => $this->table->getColumnsNames(),
+            'URL' => '?t=' . $this->shortClassName() . '&a=Add',
+            'userGroup' => $tableUsersGroup->getColumn('description')
         ]);
     }
 
