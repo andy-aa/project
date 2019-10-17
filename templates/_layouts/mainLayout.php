@@ -49,6 +49,10 @@ use App\View\Helper\HTML;
           <a class="nav-link" href="?a=loginform">Login</a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="?t=signup&a=ShowForm">Sign Up</a>
+        </li>
+
         <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown link
