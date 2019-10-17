@@ -29,7 +29,8 @@ abstract class AbstractTableController extends AbstractController
             'pageCount' => $table->pageCount(),
             'paginationLink' => '?t=' . $this->shortClassName() . '&a=Show&page=',
             'currentPage' => $page,
-            'controllerName' => $this->shortClassName()
+            'controllerName' => $this->shortClassName(),
+            'tableHeaders' => $this->table->getColumnsComments()
         ]);
     }
 
@@ -44,7 +45,17 @@ abstract class AbstractTableController extends AbstractController
         $this->render("ShowAddEditForm", [
             'columnsNames' => $this->table->getColumnsNames(),
             'editValues' => $this->table->get(['id' => $_GET['id']])[0],
-            'URL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id']
+            'URL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id'],
+            'tableHeaders' => $this->table->getColumnsComments()
+        ]);
+    }
+
+    public function actionShowAddForm()
+    {
+        $this->render("ShowAddEditForm", [
+            'columnsNames' => $this->table->getColumnsNames(),
+            'URL' => '?t=' . $this->shortClassName() . '&a=Add',
+            'tableHeaders' => $this->table->getColumnsComments()
         ]);
     }
 
@@ -52,14 +63,6 @@ abstract class AbstractTableController extends AbstractController
     {
         $this->table->edit(['id' => $_GET['id']], $_POST);
         $this->redirect('?t=' . $this->shortClassName() . '&a=show');
-    }
-
-    public function actionShowAddForm()
-    {
-        $this->render("ShowAddEditForm", [
-            'columnsNames' => $this->table->getColumnsNames(),
-            'URL' => '?t=' . $this->shortClassName() . '&a=Add'
-        ]);
     }
 
     public function actionAdd()

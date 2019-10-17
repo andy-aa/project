@@ -3,7 +3,9 @@
         <?php
             foreach ($columnsNames as $name) {
                 if ($name != 'id') {
-                    echo "<label><input class='form-control mb-4' type='text' name='"
+                    echo "<label>"
+                    .(empty($tableHeaders[$name]) ? $name : $tableHeaders[$name])
+                    ."<input class='form-control mb-4' type='text' name='"
                     .$name."' placeholder='"
                     .$name."' value='"
                     .($editValues[$name] ?? '')."'></label><br/>";

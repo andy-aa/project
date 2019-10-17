@@ -29,7 +29,8 @@ class UsersController extends AbstractTableController
             'columnsNames' => $this->table->getColumnsNames(),
             'editValues' => $this->table->get(['id' => $_GET['id']])[0],
             'URL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id'],
-            'userGroup' => $tableUsersGroup->getColumn('description')
+            'userGroup' => $tableUsersGroup->getColumn('description'),
+            'tableHeaders' => $this->table->getColumnsComments()
         ]);
     }
 
@@ -44,7 +45,8 @@ class UsersController extends AbstractTableController
         $this->render("ShowAddEditForm", [
             'columnsNames' => $this->table->getColumnsNames(),
             'URL' => '?t=' . $this->shortClassName() . '&a=Add',
-            'userGroup' => $tableUsersGroup->getColumn('description')
+            'userGroup' => $tableUsersGroup->getColumn('description'),
+            'tableHeaders' => $this->table->getColumnsComments()
         ]);
     }
 
