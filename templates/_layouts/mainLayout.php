@@ -1,6 +1,7 @@
 <?php
 
 use App\Core\{Auth, ErrorHandler};
+use App\Core\Dispatcher;
 use App\View\Helper\HTML;
 /* @var $this App\View\View */
 
@@ -30,27 +31,27 @@ use App\View\Helper\HTML;
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="?a=home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("site/home")?>">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?a=about">About</a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("site/about")?>">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?t=usergroup&a=show">Users Group</a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("usergroup/show", ['page' => 1])?>">Users Group</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?t=feedback&a=show">Feedback</a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("feedback/show", ['page' => 1])?>">Feedback</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?t=users&a=show">Users</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="?a=loginform">Login</a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("users/show", ['page' => 1])?>">Users</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="?t=signup&a=ShowForm">Sign Up</a>
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("site/loginform")?>">Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?=Dispatcher::dispatcher()->encodeUri("signup/showform")?>">Sign Up</a>
         </li>
 
         <!-- <li class="nav-item dropdown">

@@ -16,4 +16,5 @@ class Conf
     const DEFAULT_LAYOUT = 'templates/_layouts/mainLayout.php';
     const DEFAULT_PATTERNS_PATH = 'templates/site/';
     const CLEAN_URL = true;
+    
 }
