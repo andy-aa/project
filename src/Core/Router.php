@@ -3,7 +3,9 @@
 namespace App\Core;
 
 use App\Controller\ErrorController;
-use Texlab\Route\Dispatcher;
+use Texlab\Route\Dispatcher as Disp;
+use App\Core\Dispatcher;
+use App\Core\Conf;
 
 class Router
 {
@@ -12,15 +14,20 @@ class Router
     public $url;
     public function __construct()
     {
-        $this->dispatcher = new Dispatcher([
-            '/home' => 'site/home',
-            '/about' => 'site/about',
-        ]);
-        $decodeUri = $this->dispatcher->decodeUri($_SERVER['REQUEST_URI']);
+        $rules = include __DIR__."/uriRules.php";
+
+        // $this->dispatcher = new Dispatcher($rules);
+        Dispatcher::init(new Disp($rules, Conf::CLEAN_URL));    
+
+        // $decodeUri = $this->dispatcher->decodeUri($_SERVER['REQUEST_URI']);
+
+        $decodeUri = Dispatcher::dispatcher()->decodeUri($_SERVER['REQUEST_URI']);
+        
         if (!empty($decodeUri['handler'])) {
             $handler = explode('/', $decodeUri['handler']);
             $_GET["t"] = $handler[0];
             $_GET["a"] = $handler[1];
+            $_GET = array_merge($_GET, $decodeUri['vars']);
         }
         // $decodeUri = URL::getInstance()->decodeUri($_SERVER['REQUEST_URI']);
         // //        URL::getInstance()->to('TableOne/ShowTable');

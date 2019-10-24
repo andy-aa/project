@@ -5,6 +5,7 @@ namespace App\Controller;
 use TexLab\MyDB\DbEntity;
 use TexLab\MyDB\DB;
 use App\Core\Conf;
+use App\Core\Dispatcher;
 
 abstract class AbstractTableController extends AbstractController
 {
@@ -27,17 +28,22 @@ abstract class AbstractTableController extends AbstractController
         $this->render("show", [
             'table' => $table->getPage($page),
             'pageCount' => $table->pageCount(),
-            'paginationLink' => '?t=' . $this->shortClassName() . '&a=Show&page=',
+            // 'paginationLink' => '?t=' . $this->shortClassName() . '&a=Show&page=',
+            'editLink' => Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/showeditform", ['id' => '']),
+            'addLink' => Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/showaddform"),
+            'delLink' => Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/delete", ['id' => '']),
+            'paginationLink' => Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/show", ['page' => '']),
             'currentPage' => $page,
             'controllerName' => $this->shortClassName(),
-            'tableHeaders' => $this->table->getColumnsComments()
+            'tableHeaders' => $this->table->getColumnsComments(),
+
         ]);
     }
 
     public function actionDelete()
     {
         $this->table->del(['id' => $_GET['id']]);
-        $this->redirect('?t=' . $this->shortClassName() . '&a=show');
+        $this->redirect(Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/show", ['page' => 1]));
     }
 
     public function actionShowEditForm()
@@ -46,6 +52,7 @@ abstract class AbstractTableController extends AbstractController
             'columnsNames' => $this->table->getColumnsNames(),
             'editValues' => $this->table->get(['id' => $_GET['id']])[0],
             'URL' => '?t=' . $this->shortClassName() . '&a=Edit&id=' . $_GET['id'],
+            // 'URL' => Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/Edit", ['id' => $_GET['id']]),
             'tableHeaders' => $this->table->getColumnsComments()
         ]);
     }
@@ -62,12 +69,12 @@ abstract class AbstractTableController extends AbstractController
     public function actionEdit()
     {
         $this->table->edit(['id' => $_GET['id']], $_POST);
-        $this->redirect('?t=' . $this->shortClassName() . '&a=show');
+        $this->redirect(Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/show", ['page' => 1]));
     }
 
     public function actionAdd()
     {
         $this->table->add($_POST);
-        $this->redirect('?t=' . $this->shortClassName() . '&a=show');
+        $this->redirect(Dispatcher::dispatcher()->encodeUri($this->shortClassName() . "/show", ['page' => 1]));
     }
 }
